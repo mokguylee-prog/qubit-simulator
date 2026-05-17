@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qubit 3D Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.152.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.152.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.9.0/math.min.js"></script>
+</head>
+<body>
+  <div id="watermark">월평동 by 이상목</div>
+  <div id="container">
+    <div id="viewer"></div>
+    <div id="ui-panel">
+      <h1>Qubit Simulator</h1>
+
+      <div class="section" id="presets-section"></div>
+
+      <div class="section">
+        <h2>큐빗 수</h2>
+        <div class="qubit-toggle">
+          <label><input type="radio" name="nqubits" value="1" checked><span>1</span></label>
+          <label><input type="radio" name="nqubits" value="2"><span>2</span></label>
+          <label><input type="radio" name="nqubits" value="3"><span>3</span></label>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>State Vector</h2>
+        <table id="state-table">
+          <thead><tr><th>ket</th><th>진폭</th><th>확률</th></tr></thead>
+          <tbody id="state-tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>Gates</h2>
+        <div class="target-row">
+          <span>대상</span>
+          <select id="target-qubit"></select>
+        </div>
+        <div class="button-row">
+          <button data-gate="X">X</button>
+          <button data-gate="Y">Y</button>
+          <button data-gate="Z">Z</button>
+          <button data-gate="H">H</button>
+        </div>
+        <div class="button-row">
+          <button data-gate="S">S</button>
+          <button data-gate="T">T</button>
+          <button data-gate="RX">RX</button>
+          <button data-gate="RY">RY</button>
+        </div>
+        <div class="button-row">
+          <button id="reset">Reset</button>
+          <button id="measure">Measure</button>
+        </div>
+      </div>
+
+      <div class="section" id="cnot-section" style="display:none">
+        <h2>CNOT</h2>
+        <div class="cnot-row">
+          <label>제어 <select id="cnot-ctrl"></select></label>
+          <label>타겟 <select id="cnot-tgt"></select></label>
+        </div>
+        <div class="button-row" style="margin-top:8px">
+          <button id="apply-cnot">Apply CNOT</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Custom Rotation</h2>
+        <label>Axis
+          <select id="axis-select">
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+          </select>
+        </label>
+        <label>Angle
+          <input type="range" id="angle-slider" min="0" max="360" value="90" />
+          <span id="angle-value">90°</span>
+        </label>
+        <button id="apply-rotation">Apply</button>
+      </div>
+
+    </div>
+  </div>
+  <script type="module" src="script.js"></script>
+</body>
+</html>

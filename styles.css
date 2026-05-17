@@ -1,0 +1,246 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans KR", "Segoe UI", sans-serif;
+  color: #eef2f7;
+  background: radial-gradient(circle at top, #14192b 0%, #060912 45%, #02050a 100%);
+  overflow: hidden;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  height: 100vh;       /* 고정 높이 → 패널 overflow-y 작동 */
+}
+
+#ui-panel {
+  padding: 10px;
+  background: rgba(8, 16, 34, 0.92);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+h1, h2 {
+  margin: 0;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+}
+
+h2 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #99a7cd;
+  margin-bottom: 4px;
+}
+
+.section {
+  background: rgba(20, 35, 70, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  margin: 4px 0;
+  font-size: 0.78rem;
+}
+
+.metric code {
+  display: inline-block;
+  min-width: 90px;
+  text-align: right;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 7px 8px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #2a5cff, #4d8bff);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  transition: transform 0.14s ease, filter 0.14s ease;
+  flex: 1 1 48px;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+label {
+  display: grid;
+  gap: 3px;
+  margin-bottom: 6px;
+  font-size: 0.75rem;
+}
+
+select, input[type="range"] {
+  width: 100%;
+}
+
+#viewer {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  height: 100vh;
+  background: #02050a;
+}
+
+#viewer canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.credits {
+  text-align: center;
+  font-size: 0.92rem;
+  color: #99a7cd;
+}
+
+/* ── 워터마크 ── */
+#watermark {
+  position: fixed;
+  top: 14px;
+  left: 16px;
+  z-index: 100;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(170, 196, 255, 0.55);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── 큐빗 수 토글 ── */
+.qubit-toggle {
+  display: flex;
+  gap: 5px;
+  margin-top: 4px;
+}
+.qubit-toggle label {
+  display: block;
+  margin: 0;
+}
+.qubit-toggle input[type="radio"] { display: none; }
+.qubit-toggle span {
+  display: block;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: rgba(30, 50, 110, 0.55);
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+  transition: background 0.15s;
+}
+.qubit-toggle input[type="radio"]:checked + span {
+  background: linear-gradient(135deg, #2a5cff, #4d8bff);
+}
+
+/* ── State Vector 테이블 ── */
+#state-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.7rem;
+  font-family: "JetBrains Mono", monospace;
+}
+#state-table th, #state-table td {
+  padding: 3px 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  text-align: right;
+}
+#state-table th:first-child, #state-table td:first-child { text-align: left; }
+#state-table th { color: #99a7cd; font-weight: 600; }
+
+/* ── 대상 큐빗 선택 행 ── */
+.target-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  margin-bottom: 2px;
+}
+.target-row select { width: auto; }
+
+/* ── CNOT ── */
+.cnot-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+.cnot-row label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+}
+.cnot-row select { width: auto; }
+
+/* ── 예제 프리셋 ── */
+.preset-row { margin-top: 5px; }
+.preset-btn {
+  background: linear-gradient(135deg, #1a4a2a, #2a7a44) !important;
+}
+.preset-btn:hover { filter: brightness(1.15) !important; }
+
+#preset-desc {
+  margin: 5px 0 0;
+  font-size: 0.68rem;
+  color: #99c4aa;
+  line-height: 1.5;
+  white-space: pre-line;
+  min-height: 1em;
+}
+
+
+@media (max-width: 700px) {
+  body {
+    overflow-y: auto;
+  }
+
+  #container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  #ui-panel {
+    width: 100%;
+  }
+
+  #viewer {
+    height: 60vh;
+    min-height: 350px;
+  }
+}
