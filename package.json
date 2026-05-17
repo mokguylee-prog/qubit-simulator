@@ -1,0 +1,60 @@
+{
+  "name": "qubit-simulator",
+  "version": "1.0.0",
+  "description": "큐빗 상태를 블로흐 구로 3D 시각화하는 양자컴퓨터 시뮬레이터",
+  "main": "main.js",
+  "author": "이상목",
+  "license": "ISC",
+  "scripts": {
+    "start": "env -u ELECTRON_RUN_AS_NODE electron .",
+    "dist": "env -u ELECTRON_RUN_AS_NODE electron-builder",
+    "dist:mac": "env -u ELECTRON_RUN_AS_NODE electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "dist:linux": "electron-builder --linux"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mokguylee-prog/qubit-simulator.git"
+  },
+  "build": {
+    "appId": "com.wolpyeongdong.qubit-simulator",
+    "productName": "Qubit Simulator",
+    "copyright": "월평동 by 이상목",
+    "files": [
+      "index.html",
+      "styles.css",
+      "script.js",
+      "main.js",
+      "node_modules/three/build/three.module.js",
+      "node_modules/three/examples/jsm/controls/OrbitControls.js",
+      "node_modules/mathjs/lib/browser/math.js"
+    ],
+    "mac": {
+      "category": "public.app-category.education",
+      "target": [
+        { "target": "dmg", "arch": ["x64"] }
+      ]
+    },
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] }
+      ]
+    },
+    "linux": {
+      "target": ["AppImage"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^42.1.0",
+    "electron-builder": "^26.8.1"
+  },
+  "dependencies": {
+    "mathjs": "^15.2.0",
+    "three": "^0.152.0"
+  }
+}
