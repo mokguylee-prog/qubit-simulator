@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp -R \"/Volumes/MACD/Work/quantom/dist/mac/Qubit Simulator.app\" \"/Volumes/MACD/Work/quantom/Qubit Simulator.app\")",
+      "Bash(open \"/Volumes/MACD/Work/quantom/Qubit Simulator.app\")"
+    ]
+  }
+}
