@@ -25,9 +25,7 @@
       "styles.css",
       "script.js",
       "main.js",
-      "node_modules/three/build/three.module.js",
-      "node_modules/three/examples/jsm/controls/OrbitControls.js",
-      "node_modules/mathjs/lib/browser/math.js"
+      "vendor/**"
     ],
     "mac": {
       "category": "public.app-category.education",
