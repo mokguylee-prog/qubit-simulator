@@ -124,7 +124,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 Object.assign(controls, {
   enableDamping: true, dampingFactor: 0.08,
   minDistance: 2, maxDistance: 40,
-  autoRotate: true, autoRotateSpeed: 0.7,
+  autoRotate: false,
 });
 
 // ── Bloch Sphere Factory ──────────────────────────────────────────
@@ -390,6 +390,8 @@ angleSlider.addEventListener('input', () => {
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
+  // 각 블로흐 구가 자기 중심 Y축 기준으로 독립 회전
+  blochGroups.forEach(({ group }) => { group.rotation.y += 0.005; });
   renderer.render(scene, camera);
 }
 
