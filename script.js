@@ -8,8 +8,8 @@ const angleValue  = document.getElementById('angle-value');
 const axisSelect  = document.getElementById('axis-select');
 
 // ── Quantum State ────────────────────────────────────────────────
-let numQubits = 1;
-let state = initState(1);
+let numQubits = 2;
+let state = initState(2);
 
 function initState(n) {
   return Array.from({ length: 1 << n }, (_, i) =>
